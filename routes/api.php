@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')
     ->prefix('users')
     ->name('users.')
     ->group(function () {
-        Route::get('/',                  'index')->name('index');
+        Route::get('/',                  'index')->name('index')->middleware('cache.response:300');
         Route::get('/{id}',              'show')->name('show');
         Route::patch('/{user}/follow',   'follow')->name('follow')->can('follow', 'user');
         Route::patch('/{user}/unfollow', 'unfollow')->name('unfollow')->can('unfollow', 'user');
@@ -41,7 +41,7 @@ Route::middleware('auth:sanctum')
     ->prefix('posts')
     ->name('posts.')
     ->group(function () {
-        Route::get('/',                'index')->name('index');
+        Route::get('/',                'index')->name('index')->middleware('cache.response:300');
         Route::put('/{post}',          'update')->name('update')->can('update', 'post');
         Route::delete('/{post}',       'destroy')->name('destroy')->can('destroy', 'post');
         Route::get('/{post}',          'show')->name('show');

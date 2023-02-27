@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Post;
 use App\Policies\PostPolicy;
+use Spatie\ResponseCache\Events\ResponseCacheHit;
+use Spatie\ResponseCache\Events\CacheMissed;
+use Spatie\ResponseCache\Events\ClearingResponseCache;
+use Spatie\ResponseCache\Events\ClearedResponseCache;
+use Illuminate\Support\Facades\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Event::listen(function (ResponseCacheHit $event) {
+            info($event);
+        });
+
         // DB::listen(function($query) {
         //     Log::info(
         //         $query->sql,
