@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use App\Exceptions\ModelHelperMethodException;
+use App\Traits\ClearsResponseCache;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, ClearsResponseCache;
 
     /**
      * The attributes that are mass assignable.
