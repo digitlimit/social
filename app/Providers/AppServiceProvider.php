@@ -37,18 +37,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(function (ResponseCacheHit $event) {
-            info($event);
-        });
+        // Event::listen(function (ResponseCacheHit $request) {
+        //     info(['Hit', request()->all(), request()->method()]);
+        // });
 
-        // DB::listen(function($query) {
-        //     Log::info(
-        //         $query->sql,
-        //         [
-        //             'bindings' => $query->bindings,
-        //             'time' => $query->time
-        //         ]
-        //     );
+        // Event::listen(function (CacheMissed $request) {
+        //     info(['Missed', request()->all(), request()->method()]);
+        // });
+
+        // Event::listen(function (ClearingResponseCache $event) {
+        //     info(['Clearing', request()->all(), request()->method()]);
+        // });
+
+        // Event::listen(function (ClearedResponseCache $event) {
+        //     info(['Cleared', request()->all(), request()->method()]);
         // });
     }
 }
